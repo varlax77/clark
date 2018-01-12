@@ -46,23 +46,18 @@ struct seqData
 
 int main(int argc, char** argv)
 {
-	if (argc != 4)
+	if (argc != 3)
 	{
-		cerr << "Usage: "<< argv[0] << " <./file of filenames> <./nucl_accession2taxid> <./merged.dmp>"<< endl;
+		cerr << "Usage: cat nucl_accession2taxid | "<< argv[0] << " <./file of filenames> <./merged.dmp>"<< endl;
 		exit(-1);
 	}
-	FILE * oldTx = fopen(argv[3], "r");
+	FILE * oldTx = fopen(argv[2], "r");
         if (oldTx == NULL)
         {
-                cerr << "Failed to open " << argv[3] << endl;
+                cerr << "Failed to open " << argv[2] << endl;
                 exit(-1);
         }
-	FILE * accToTx = fopen(argv[2], "r");
-	if (accToTx == NULL)
-	{
-		cerr << "Failed to open " << argv[2] << endl;
-		exit(-1);
-	}
+	FILE * accToTx = stdin;
 	FILE * meta_f = fopen(argv[1], "r");
 	if (meta_f == NULL)
 	{
@@ -170,7 +165,6 @@ int main(int argc, char** argv)
 			TaxIDs[it->second] = new_taxID;
 		}
         }
-        fclose(accToTx);
 	for(size_t t = 0; t < seqs.size(); t++)
 	{
 		cout << seqs[t].Name << "\t" ;
