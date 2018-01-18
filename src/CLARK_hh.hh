@@ -40,6 +40,7 @@
 #include "./FileHandlerA.hh"
 #include "./FileHandler.hh"
 #include "./HashTop.hh"
+#include "FILEex.h"
 
 #define MAXRSIZE	10000
 #define MAXNBREADS	1000000
@@ -875,7 +876,7 @@ size_t CLARK<HKMERr>::makeSpecificTargetSets(const vector<string>& _filesHT, con
 		EHashtable<HKMERr, lElement> commonKmersHT(m_kmerSize, m_labels, m_labels_c);
 		for(size_t t = 0 ; t < m_targetsID.size(); t++)
 		{
-			FILE* fd = fopen(m_targetsID[t].first.c_str(),"r");
+			FILEex* fd = fopenEx(m_targetsID[t].first.c_str(),"r");
 			if (fd == NULL)
 			{	cerr << "Failed to open " << m_targetsID[t].first << endl;
 				continue;
@@ -1075,7 +1076,7 @@ size_t CLARK<HKMERr>::makeSpecificTargetSets(const vector<string>& _filesHT, con
 		EHashtable<HKMERr, lElement> commonKmersHT(m_kmerSize, m_labels, m_labels_c);
 		for(size_t t = 0 ; t < m_targetsID.size(); t++)
 		{
-			FILE* fd = fopen(m_targetsID[t].first.c_str(),"r");
+			FILEex* fd = fopenEx(m_targetsID[t].first.c_str(),"r");
 			if (fd == NULL)
 			{
 				cerr << "Failed to open " << m_targetsID[t].first << endl;
@@ -1290,7 +1291,7 @@ size_t CLARK<HKMERr>::makeSpecificTargetSets(const vector<string>& _filesHT, con
 	EHashtable<HKMERr, Element> commonKmersHT(m_kmerSize, m_labels, m_labels_c);
 	for(size_t t = 0 ; t < m_targetsID.size(); t++)
 	{
-		FILE* fd = fopen(m_targetsID[t].first.c_str(),"r");
+		FILEex* fd = fopenEx(m_targetsID[t].first.c_str(),"r");
 		if (fd == NULL)
 		{
 			cerr << "Failed to open " << m_targetsID[t].first << endl;
