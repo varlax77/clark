@@ -26,6 +26,11 @@
  *
  */
 
+#if (CLARK_VERSION_TYPE == 1)
+#   include "parameters_hh"
+#elif (CLARK_VERSION_TYPE == 2)
+#   include "parameters_shh"
+#else
 
 #ifndef PARAMETERS_HH
 #define PARAMETERS_HH
@@ -47,5 +52,7 @@
 typedef uint64_t      T64;
 typedef uint32_t      T32;
 typedef uint16_t      T16;
+
+#endif
 
 #endif
